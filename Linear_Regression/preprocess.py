@@ -87,7 +87,7 @@ def main():
     X,y = create_set(df)
 
     # Creating test cv train split
-    X_train,y_train,X_cv,y_cv,X_test,y_test = split(X,y)
+    X_train,y_train,X_cv,y_cv,X_test,y_test = split(X,y,seed=42)
     data = {'X_train':X_train,
         'y_train':y_train,
         'X_cv':X_cv,

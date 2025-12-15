@@ -24,11 +24,11 @@ class LinearRegression():
     def fit(self):
         self.w, self.b = self.grad_desc.find_w_b(self.X_train,self.y_train)
 
-        self.w, self.b = self.normaliser.get_w_b(self.w,self.b)
         
         self.test_mse,self.test_rmse = self.get_mse_rmse(self.X_test,self.y_test)
         self.train_mse,self.train_rmse = self.get_mse_rmse(self.X_train,self.y_train)
 
+        self.w, self.b = self.normaliser.get_w_b(self.w,self.b)
         self.summary()
 
     def get_mse_rmse(self,X,y):

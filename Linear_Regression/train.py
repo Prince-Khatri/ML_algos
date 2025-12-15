@@ -17,11 +17,11 @@ def train():
         X_test = data['X_test']
         y_test = data['y_test']
     print("Setting up model config:")
-    
+
     norm_model = Normalise()
     norm_model.compile(X_train)
     X_train = norm_model.fit(X_train)
-    X_test = norm_model.fit(X_test)
+    X_cv = norm_model.fit(X_cv)
 
     model = LinearRegression(X_train,y_train,X_cv,y_cv,normaliser = norm_model)
 

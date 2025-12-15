@@ -17,7 +17,7 @@ class GradientDescend:
 
         y_pred = X_train @ w + b
         error = y_pred - y_train
-        dJ_dw = (error @ X_train ).sum()/m
+        dJ_dw = (X_train.T @ error)/m
         dJ_db = error.sum()/m
         
         return dJ_dw,dJ_db
@@ -27,7 +27,7 @@ class GradientDescend:
         cost = 0
         y_pred = X_train @ self.w + self.b
         cost = np.power(y_pred-y_train,2).sum()
-        cost/=m
+        cost/= 2*m
         return cost
 
     def find_w_b(self, X_train, y_train, max_range=1_000_000, threshold=1e-5):
@@ -42,7 +42,7 @@ class GradientDescend:
 
             cost = self.find_cost(X_train,y_train)
 
-            if abs(cost-prev_cost)< threshold:
+            if abs(cost-prev_cost)/(prev_cost+1e-8)< threshold:
                 break
             prev_cost = cost
 
