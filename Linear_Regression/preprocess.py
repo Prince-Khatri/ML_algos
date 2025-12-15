@@ -8,7 +8,7 @@ import os
 
 dataset_loc = 'Linear_Regression/dataset/boston_dataset.csv'
 saved_path = f"Linear_Regression/dataset/data.bin"
-
+norm_model = "Linear_Regression/dataset/norm_model.bin"
 
 @pretty_header
 def visualise_dataset(df):
