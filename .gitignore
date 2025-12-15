@@ -1,2 +1,5 @@
 /env
-__pycache__/
+/__pycache__
+*.bin
+*.pyc
+test_tf.py
