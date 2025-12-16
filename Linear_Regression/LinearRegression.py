@@ -31,6 +31,23 @@ class LinearRegression():
         self.w, self.b = self.normaliser.get_w_b(self.w,self.b)
         self.summary()
 
+    def get_deratives(self,X_train,y_train,w, b):
+        m = len(X_train)
+        y_pred = X_train @ w + b
+        error = y_pred - y_train
+        dJ_dw = (X_train.T @ error)/m
+        dJ_db = error.sum()/m
+
+        return dJ_dw,dJ_db
+
+    def get_cost(self, X_train, y_train, w, b):
+        m = len(X_train)
+        cost = 0
+        y_pred = X_train @ w + b
+        cost = np.power(y_pred-y_train,2).sum()
+        cost/= 2*m
+        return cost
+
     def get_mse_rmse(self,X,y):
         m = len(X)
         y_pred = self.predict(X)
@@ -46,7 +63,7 @@ class LinearRegression():
         self.learning_rate=learning_rate
         self.w= np.zeros(self.X_train[0].shape)
         self.b= 0
-        self.grad_desc = GradientDescend(self.w,self.b,self.learning_rate)
+        self.grad_desc = GradientDescend(self.w,self.b,self.learning_rate,self.get_deratives,self.get_cost)
 
     def summary(self):
         print(f"\tw:{self.w}\n\tb:{self.b}")

@@ -5,30 +5,20 @@ class GradientDescend:
     """
         Gradient descend for Linear regression
     """
-    def __init__(self,w,b,a):
+    def __init__(self,w,b,a,get_derivaties, get_cost):
         self.w = w
         self.b = b
         self.a = a
+        self.get_derivaties = get_derivaties
+        self.get_cost = get_cost
 
     def find_derivatives(self,X_train,y_train):
         w = self.w
         b = self.b
-        m = len(X_train)
-
-        y_pred = X_train @ w + b
-        error = y_pred - y_train
-        dJ_dw = (X_train.T @ error)/m
-        dJ_db = error.sum()/m
-        
-        return dJ_dw,dJ_db
+        return self.get_derivaties(X_train,y_train,w,b)
 
     def find_cost(self,X_train,y_train):
-        m = len(X_train)
-        cost = 0
-        y_pred = X_train @ self.w + self.b
-        cost = np.power(y_pred-y_train,2).sum()
-        cost/= 2*m
-        return cost
+        return self.get_cost(X_train,y_train,self.w, self.b)
 
     def find_w_b(self, X_train, y_train, max_range=1_000_000, threshold=1e-5):
 
