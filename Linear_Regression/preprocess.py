@@ -7,6 +7,7 @@ import pickle as pkl
 import os
 
 dataset_loc = 'Linear_Regression/dataset/boston_dataset.csv'
+# dataset_loc = 'Linear_Regression/dataset/salary.csv'
 saved_path = f"Linear_Regression/dataset/data.bin"
 norm_model = "Linear_Regression/dataset/norm_model.bin"
 
@@ -87,7 +88,7 @@ def main():
     X,y = create_set(df)
 
     # Creating test cv train split
-    X_train,y_train,X_cv,y_cv,X_test,y_test = split(X,y,seed=42)
+    X_train,y_train,X_cv,y_cv,X_test,y_test = split(X,y,seed=30)
     data = {'X_train':X_train,
         'y_train':y_train,
         'X_cv':X_cv,
